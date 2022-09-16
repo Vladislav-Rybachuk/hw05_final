@@ -39,9 +39,10 @@ class Post(models.Model):
         upload_to='posts/',
         blank=True
     )
+    
     class Meta:
-        ordering =('-pub_date',)
-        verbose_name ='Пост'
+        ordering = ('-pub_date',)
+        verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
 
     def __str__(self):

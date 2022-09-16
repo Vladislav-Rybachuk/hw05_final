@@ -35,4 +35,3 @@ class TestCacheIndex(TestCase):
         cache.clear()
         new_response = self.get_response()
         self.assertNotContains(new_response, self.post.text, status_code=200)
-        
