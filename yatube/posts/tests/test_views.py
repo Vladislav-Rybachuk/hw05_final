@@ -47,7 +47,7 @@ class PostViewTest(TestCase):
             content_type='image/jpg'
         )
         cls.author_post = Post.objects.create(
-            text='Текст поста автора',
+            text='Текст поста',
             author=cls.author,
             group=cls.group,
             image=cls.uploaded
