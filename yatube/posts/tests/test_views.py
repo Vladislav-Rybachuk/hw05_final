@@ -20,7 +20,7 @@ class PostViewTest(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.user = User.objects.create_user(username='author')
+        cls.user = User.objects.create_user(username='auth')
         cls.author = User.objects.create_user(username='author')
         cls.author_2 = User.objects.create_user(username='author_2')
         cls.group = Group.objects.create(
