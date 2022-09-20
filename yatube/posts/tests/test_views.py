@@ -47,13 +47,13 @@ class PostViewTest(TestCase):
             content_type='image/jpg'
         )
         cls.author_post = Post.objects.create(
-            text='Текст поста',
+            text='Текст поста автора',
             author=cls.author,
             group=cls.group,
             image=cls.uploaded
         )
         cls.post = Post.objects.create(
-            text='Текст поста',
+            text='Текст поста ',
             author=cls.user,
             group=cls.group,
             image=cls.uploaded
