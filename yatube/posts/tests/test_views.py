@@ -53,7 +53,7 @@ class PostViewTest(TestCase):
             image=cls.uploaded
         )
         cls.post = Post.objects.create(
-            text='Текст поста ',
+            text='Текст поста',
             author=cls.user,
             group=cls.group,
             image=cls.uploaded
@@ -102,7 +102,7 @@ class PostViewTest(TestCase):
             for reverse_name in reverse_names:
                 with self.subTest(reverse_name=reverse_name):
                     response = self.authorized_client.get(reverse_name)
-                    self.assertTemplateUsed(response, template)
+                    self.assertTemplateUsed(response, template) 
 
     def _post_for_tests(self, context, some_posts):
         self.assertEqual(context.text, some_posts.text)
