@@ -115,7 +115,7 @@ class PostViewTest(TestCase):
         response = self.authorized_client.get(reverse('posts:index'))
 
         first_object = response.context['page_obj'][0]
-        all_posts = Post.objects.all()[0]
+        all_posts = Post.objects.all().order_by('pub_date')[0]
         self._post_for_tests(first_object, all_posts)
 
     def test_group_list(self):
@@ -125,7 +125,7 @@ class PostViewTest(TestCase):
             reverse('posts:group_list', kwargs={'slug': group.slug})
         )
         first_object = response.context['page_obj'][0]
-        post_of_group = group.posts.all()[0]
+        post_of_group = group.posts.all().order_by('pub_date')[0]
         self._post_for_tests(first_object, post_of_group)
 
     def test_profile(self):
