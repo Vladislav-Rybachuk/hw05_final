@@ -1,4 +1,3 @@
-from unicodedata import name
 from django.db import models
 from django.db.models import F
 from django.contrib.auth import get_user_model
@@ -101,8 +100,9 @@ class Follow(models.Model):
             ),
             models.CheckConstraint(
                 check=~models.Q(user=F('author')),
-                name= 'not_Equal_username',
+                name='not_Equal_username',
             )
         )
+
 
 

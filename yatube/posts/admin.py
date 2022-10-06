@@ -19,12 +19,12 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('post', 'author', 'text', 'created')
     list_editable = ('text',)
     search_fields = ('text',)
-    list_filter = ('author','created',)
+    list_filter = ('author', 'created',)
     empty_value_display = '-пусто-'
 
 
 class FollowAdmin(admin.ModelAdmin):
-    list_display = ('user','author',)
+    list_display = ('user', 'author',)
     search_fields = ('author')
     list_filter = ('author')
 
@@ -35,5 +35,3 @@ admin.site.register(Post, PostAdmin)
 admin.site.register(Group)
 admin.site.register(CommentAdmin)
 admin.site.register(FollowAdmin)
-
-
