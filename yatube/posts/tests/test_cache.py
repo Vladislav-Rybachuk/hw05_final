@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.test import Client, TestCase
@@ -27,11 +29,11 @@ class TestCacheIndex(TestCase):
     def test_cache(self):
         """Тестируем кеширование страницы index"""
         response = self.get_response()
-        self.assertContains(response, self.post.text, status_code=200)
+        self.assertContains(response, self.post.text, HTTPStatus.OK)
 
         self.post.delete()
-        self.assertContains(response, self.post.text, status_code=200)
+        self.assertContains(response, self.post.text, HTTPStatus.OK)
 
         cache.clear()
         new_response = self.get_response()
-        self.assertNotContains(new_response, self.post.text, status_code=200)
+        self.assertNotContains(new_response, self.post.text, HTTPStatus.OK)

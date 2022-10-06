@@ -10,7 +10,7 @@ QUANTITY = 10
 
 
 def paginated_context(queryset, request):
-    paginator = Paginator(queryset, 10)
+    paginator = Paginator(queryset, QUANTITY)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return {
@@ -144,21 +144,17 @@ def add_comment(request, post_id):
 @login_required
 def follow_index(request):
     """Страница подписок."""
-    post_list = Post.objects.filter(author__following__user=request.user)
-    paginator = Paginator(post_list, settings.PAGINATOR_OBJ_PER_PAGE)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    context = {
-        'page_obj': page_obj,
-    }
+    context = paginated_context(
+        Post.objects.all().order_by('pub_date'), request
+    )
     return render(request, 'posts/follow.html', context)
 
 
 @login_required
 def profile_follow(request, username):
     """Подписка на пользователя."""
-    author = get_object_or_404(User, username=username).id
-    if str(request.user) == username:
+    author = get_object_or_404(User, username=username)
+    if request.user.username == username:
         return redirect('posts:profile', username=username)
     else:
         Follow.objects.get_or_create(user_id=request.user.id, author_id=author)
@@ -168,6 +164,6 @@ def profile_follow(request, username):
 @login_required
 def profile_unfollow(request, username):
     """Отписка от пользователя"""
-    author = get_object_or_404(User, username=username).id
+    author = get_object_or_404(User, username=username)
     Follow.objects.filter(user_id=request.user.id, author_id=author).delete()
     return redirect('posts:profile', username=username)
