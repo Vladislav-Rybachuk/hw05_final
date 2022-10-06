@@ -103,7 +103,3 @@ class Follow(models.Model):
                 name='not_Equal_username',
             )
         )
-
-
-
-
