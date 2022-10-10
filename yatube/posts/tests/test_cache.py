@@ -29,11 +29,11 @@ class TestCacheIndex(TestCase):
     def test_cache(self):
         """Тестируем кеширование страницы index"""
         response = self.get_response()
-        self.assertContains(response, self.post.text, HTTPStatus.OK)
+        self.assertContains(response, self.post.text, status_code=HTTPStatus.OK)
 
         self.post.delete()
-        self.assertContains(response, self.post.text, HTTPStatus.OK)
+        self.assertContains(response, self.post.text, status_code=HTTPStatus.OK)
 
         cache.clear()
         new_response = self.get_response()
-        self.assertNotContains(new_response, self.post.text, HTTPStatus.OK)
+        self.assertNotContains(new_response, self.post.text, status_code=HTTPStatus.OK)

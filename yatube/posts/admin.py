@@ -25,8 +25,8 @@ class CommentAdmin(admin.ModelAdmin):
 
 class FollowAdmin(admin.ModelAdmin):
     list_display = ('user', 'author',)
-    search_fields = ('author')
-    list_filter = ('author')
+    search_fields = ('author',)
+    list_filter = ('author',)
 
 
 # При регистрации модели Post источником конфигурации для неё назначаем
