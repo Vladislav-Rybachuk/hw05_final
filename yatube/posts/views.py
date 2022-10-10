@@ -143,7 +143,8 @@ def add_comment(request, post_id):
 @login_required
 def follow_index(request):
     """Страница подписок."""
-    post_list = Post.objects.filter(author__following__user=request.user).order_by('pub_date')
+    post_list = Post.objects.filter(
+        author__following__user=request.user).order_by('pub_date')
     context = paginated_context(
         post_list, request
     )
@@ -157,7 +158,8 @@ def profile_follow(request, username):
     if request.user.username == username:
         return redirect('posts:profile', username=username)
     else:
-        Follow.objects.get_or_create(user_id=request.user.id, author_id=author.id)
+        Follow.objects.get_or_create(
+            user_id=request.user.id, author_id=author.id)
         return redirect('posts:profile', username=username)
 
 
